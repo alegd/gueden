@@ -13,11 +13,11 @@ export function Nav() {
         <div className={styles.nav}>
           <Logo />
 
-          <div className="flex items-center space-x-4 sm:space-x-6">
+          <nav className="flex items-center space-x-4 sm:space-x-6" aria-label="Main navigation">
             <NavigationLinks />
             <SearchButton />
             <MobileNav />
-          </div>
+          </nav>
         </div>
       </div>
     </header>

@@ -71,7 +71,7 @@ export default async function RootLayout({
 
   return (
     <html
-      lang={siteMetadata.language}
+      lang={locale}
       className={`${space_grotesk.variable} scroll-smooth`}
       suppressHydrationWarning
     >

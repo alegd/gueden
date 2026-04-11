@@ -28,6 +28,7 @@ export function FeaturedProjects() {
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={project.title}
               className="group flex h-full flex-col rounded-lg border border-border p-5 transition-colors hover:border-foreground/30"
             >
               <div className="flex items-center gap-2">

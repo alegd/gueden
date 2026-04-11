@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 const locales = [
   { code: 'es', label: 'ES' },
-  { code: 'en', label: 'EN' },
+  { code: 'en', label: 'EN' }
 ];
 
 export function LocaleSwitcher() {
@@ -31,6 +31,7 @@ export function LocaleSwitcher() {
         <span key={locale.code} className="flex items-center gap-1">
           {i > 0 && <span className="text-muted-foreground">/</span>}
           <button
+            type="button"
             onClick={() => switchTo(locale.code)}
             aria-label={`Switch to ${locale.label}`}
             className={

@@ -35,6 +35,7 @@ export default async function PortfolioPage() {
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={project.title}
               className="group block py-6 transition-transform hover:translate-x-1"
             >
               <div className="flex items-center gap-3">

@@ -26,6 +26,20 @@ const components = {
   medium: Medium
 };
 
+const labels: Record<string, string> = {
+  mail: 'Email',
+  github: 'GitHub',
+  facebook: 'Facebook',
+  youtube: 'YouTube',
+  linkedin: 'LinkedIn',
+  twitter: 'Twitter',
+  x: 'X',
+  mastodon: 'Mastodon',
+  threads: 'Threads',
+  instagram: 'Instagram',
+  medium: 'Medium'
+};
+
 type SocialIconProps = {
   kind: keyof typeof components;
   href: string | undefined;
@@ -43,15 +57,14 @@ const SocialIcon = ({ kind, href, size = 8 }: SocialIconProps) => {
 
   return (
     <a
-      className="text-sm hover:text-gray-600 transition"
+      className="text-muted-foreground transition-colors hover:text-foreground"
       target="_blank"
       rel="noopener noreferrer"
       href={href}
+      aria-label={labels[kind] || kind}
     >
-      <span className="sr-only">{kind}</span>
-      <SocialSvg
-        className={`fill-current hover:text-primary-500 dark:hover:text-primary-400 size-${size}`}
-      />
+      <span className="sr-only">{labels[kind] || kind}</span>
+      <SocialSvg className={`fill-current size-${size}`} />
     </a>
   );
 };
