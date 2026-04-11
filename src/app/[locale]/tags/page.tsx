@@ -15,13 +15,11 @@ export default async function Page() {
         <h1 className="text-3xl font-medium tracking-tight md:text-4xl">Tags</h1>
       </div>
       <div className="flex flex-wrap gap-4">
-        {tagKeys.length === 0 && (
-          <p className="text-muted-foreground">No tags found.</p>
-        )}
+        {tagKeys.length === 0 && <p className="text-muted-foreground">No tags found.</p>}
         {sortedTags.map((t) => (
           <span key={t} className="text-sm">
             <Tag text={t} />
-            <span className="ml-1 text-muted-foreground/60">({tagCounts[t]})</span>
+            <span className="ml-1 text-muted-foreground">({tagCounts[t]})</span>
           </span>
         ))}
       </div>

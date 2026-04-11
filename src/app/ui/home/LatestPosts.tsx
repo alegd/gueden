@@ -34,18 +34,21 @@ export function LatestPosts({ posts }: LatestPostsProps) {
         <>
           <ul className="mt-6">
             {latestPosts.map((post, i) => (
-              <Animate key={post.slug} delay={i * 80}>
-                <li className="flex items-baseline justify-between border-b border-border py-3 transition-colors hover:bg-muted/50">
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="font-medium transition-colors hover:text-muted-foreground"
-                  >
-                    {post.title}
-                  </Link>
-                  <time className="ml-4 shrink-0 text-sm text-muted-foreground">
-                    {formatDate(post.date)}
-                  </time>
-                </li>
+              <Animate
+                key={post.slug}
+                delay={i * 80}
+                as="li"
+                className="flex items-baseline justify-between border-b border-border py-3 transition-colors hover:bg-muted/50"
+              >
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="font-medium transition-colors hover:text-muted-foreground"
+                >
+                  {post.title}
+                </Link>
+                <time className="ml-4 shrink-0 text-sm text-muted-foreground">
+                  {formatDate(post.date)}
+                </time>
               </Animate>
             ))}
           </ul>

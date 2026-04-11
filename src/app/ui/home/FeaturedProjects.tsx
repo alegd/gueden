@@ -47,7 +47,7 @@ export function FeaturedProjects() {
                 {tProjects(project.descriptionKey)}
               </p>
               {project.tech && (
-                <p className="mt-3 text-sm text-muted-foreground/60">
+                <p className="mt-3 text-sm text-muted-foreground">
                   {project.tech.join(' \u00B7 ')}
                 </p>
               )}

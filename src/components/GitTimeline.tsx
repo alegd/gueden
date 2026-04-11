@@ -132,13 +132,13 @@ export function GitTimeline() {
                   {entry.year}
                 </span>
                 {entry.branch && (
-                  <span className="font-mono text-sm text-muted-foreground/40">─┐</span>
+                  <span className="font-mono text-sm text-muted-foreground">─┐</span>
                 )}
               </div>
               <h3 className="mt-0.5 mb-0.5 font-medium">{entry.title}</h3>
               <p className="text-sm text-muted-foreground mb-1">{entry.org}</p>
               {entry.description && (
-                <p className="mt-0 text-sm text-muted-foreground/70">{entry.description}</p>
+                <p className="mt-0 text-sm text-muted-foreground">{entry.description}</p>
               )}
             </div>
           </div>

@@ -20,7 +20,7 @@ export function ContactCta() {
 
         <Link
           href="/contact"
-          className="inline-flex items-center gap-2 rounded-md border border-emerald-500/40 px-4 py-2 text-sm font-medium text-emerald-600 transition-colors hover:border-emerald-500 hover:bg-emerald-500/10 dark:text-emerald-400 dark:hover:bg-emerald-500/10"
+          className="inline-flex shrink-0 whitespace-nowrap items-center gap-2 rounded-md border border-emerald-500/40 px-4 py-2 text-sm font-medium text-emerald-600 transition-colors hover:border-emerald-500 hover:bg-emerald-500/10 dark:text-emerald-400 dark:hover:bg-emerald-500/10"
         >
           {t('cta_bottom_link')}
           <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
