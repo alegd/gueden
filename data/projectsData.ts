@@ -1,27 +1,38 @@
 interface Project {
-  title: string
-  description: string
-  href?: string
-  imgSrc?: string
+  title: string;
+  descriptionKey: string;
+  href?: string;
+  imgSrc?: string;
+  tech?: string[];
+  status?: 'live' | 'building' | 'beta';
+  dotColor?: string;
 }
 
 const projectsData: Project[] = [
   {
-    title: 'A Search Engine',
-    description: `What if you could look up any information in the world? Webpages, images, videos
-    and more. Google has many features to help you find exactly what you're looking
-    for.`,
-    imgSrc: '/static/images/google.png',
-    href: 'https://www.google.com',
+    title: 'Zendinit',
+    descriptionKey: 'zendinit',
+    href: 'https://www.zendinit.com',
+    tech: ['Next.js', 'NestJS', 'PostgreSQL', 'Stripe Connect'],
+    status: 'building',
+    dotColor: 'linear-gradient(135deg, #3B82F6, #8B5CF6)',
   },
   {
-    title: 'The Time Machine',
-    description: `Imagine being able to travel back in time or to the future. Simple turn the knob
-    to the desired date and press "Go". No more worrying about lost keys or
-    forgotten headphones with this simple yet affordable solution.`,
-    imgSrc: '/static/images/time-machine.jpg',
-    href: '/blog/the-time-machine',
+    title: 'Yappie',
+    descriptionKey: 'yappie',
+    href: 'https://github.com/alegd/yappie',
+    tech: ['Next.js', 'NestJS', 'OpenAI', 'BullMQ'],
+    status: 'live',
+    dotColor: '#10B981',
   },
-]
+  {
+    title: '¡Uy! El arte',
+    descriptionKey: 'uyelarte',
+    href: 'https://uyelarte.com/',
+    tech: ['Podcast'],
+    status: 'live',
+    dotColor: '#F59E0B',
+  },
+];
 
-export default projectsData
+export default projectsData;

@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "portfolio": "Proyectos",
+    "blog": "Blog",
+    "about": "Sobre mí",
+    "contact": "Contacto"
+  },
+  "home": {
+    "eyebrow": "Alejandro Guerra",
+    "title_line1": "Desarrollador Full Stack",
+    "title_line2": "en Madrid.",
+    "intro": "Construyo productos digitales y diseño arquitecturas de software. De plataformas enterprise a herramientas con IA, desde la idea hasta producción.",
+    "cta_portfolio": "Ver proyectos",
+    "cta_contact": "Contactar",
+    "featured_projects": "Proyectos destacados",
+    "latest_posts": "Últimas publicaciones",
+    "no_posts_yet": "Todavía no hay publicaciones. Estoy trabajando en las primeras.",
+    "all_projects": "Ver todos los proyectos",
+    "all_posts": "Ver todas las publicaciones",
+    "cta_bottom_title": "¿Tienes algo en mente?",
+    "cta_bottom_subtitle": "Si quieres hablar sobre un proyecto, una colaboración o simplemente saludar, escríbeme.",
+    "cta_bottom_link": "Hablemos"
+  },
+  "projects": {
+    "zendinit": "Marketplace P2P de crowdshipping que conecta a personas que envían paquetes con viajeros que ya hacen ese trayecto entre ciudades españolas.",
+    "yappie": "Herramienta open source de voz a ticket. Dicta tus ideas y obtén incidencias de Jira estructuradas automáticamente con Whisper y GPT-4o.",
+    "uyelarte": "Un podcast de arte y cultura. En cada episodio, un tema diferente para acercar el arte a audiencias no especializadas."
+  },
+  "status": {
+    "live": "activo",
+    "building": "en desarrollo",
+    "beta": "beta"
+  },
+  "blog": {
+    "all_posts": "Todas las publicaciones"
+  },
+  "about": "Sobre mí",
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Si quieres hablar sobre un proyecto, una colaboración o simplemente saludar, escríbeme.",
+    "form": {
+      "name": {
+        "placeholder": "Tu nombre",
+        "errors": {
+          "maxLength": "¿Tu nombre es tan largo?",
+          "required": "Por favor, introduce tu nombre"
+        }
+      },
+      "email": {
+        "placeholder": "Un correo donde pueda responderte",
+        "errors": {
+          "maxLength": "¿Tu correo es tan largo?",
+          "pattern": "Por favor, introduce un correo válido",
+          "required": "Por favor, introduce tu correo"
+        }
+      },
+      "subject": {
+        "placeholder": "Asunto del mensaje",
+        "errors": {
+          "maxLength": "Elige un asunto más corto",
+          "required": "Por favor, introduce un asunto"
+        }
+      },
+      "message": {
+        "placeholder": "Escribe aquí tu mensaje",
+        "errors": {
+          "required": "Debes escribir un mensaje"
+        }
+      },
+      "submit": "Enviar mensaje",
+      "sending": "Enviando...",
+      "success_title": "Mensaje enviado",
+      "success": "Te respondo pronto. Gracias por escribir.",
+      "error": "No se pudo enviar el mensaje. Inténtalo de nuevo.",
+      "back_home": "Volver al inicio"
+    }
+  }
+}

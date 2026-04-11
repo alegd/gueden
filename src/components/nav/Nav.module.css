@@ -1,0 +1,17 @@
+@reference "tailwindcss";
+
+.container {
+  @apply py-2.5 backdrop-blur-md;
+
+  & .nav {
+    @apply flex items-center w-full justify-between;
+
+    & a {
+      @apply active:opacity-50;
+    }
+  }
+}
+
+.sticky-nav {
+  @apply fixed w-full top-0 z-50;
+}

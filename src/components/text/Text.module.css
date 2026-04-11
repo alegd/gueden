@@ -1,0 +1,64 @@
+@reference "tailwindcss";
+
+h1.text {
+  @apply font-medium text-3xl md:text-5xl mb-6 mt-2 leading-tight;
+}
+
+h2.text {
+  @apply font-medium text-[1.7rem] md:text-[2rem] mb-6;
+}
+
+h3.text {
+  font-weight: 500;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+h4.text {
+  font-weight: 500;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+h5.text {
+  margin: 0;
+  display: block;
+  padding: 0;
+  font-size: 15px;
+  font-weight: 400;
+  color: #777e8b;
+}
+
+label.text {
+  font-style: normal;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+
+  &.error {
+    background: rgb(255, 246, 246);
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 0 10px;
+    text-align: left;
+    color: rgb(187, 56, 56);
+    font-weight: normal;
+    margin: 10px;
+  }
+}
+
+.title {
+  @apply text-xl md:text-2xl font-medium;
+}
+
+.subtitle {
+  @apply text-lg text-gray-500;
+}
+
+.error {
+  @apply text-red-500 text-sm;
+}

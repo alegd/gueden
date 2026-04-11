@@ -1,0 +1,26 @@
+@reference "tailwindcss";
+
+.textInput {
+  @apply relative w-full;
+
+  > label {
+    @apply text-gray-600 font-medium;
+
+    & .required {
+      @apply text-red-500 text-sm ml-1;
+    }
+  }
+
+  > input,
+  & textarea {
+    @apply my-2;
+  }
+
+  & .resetButton {
+    @apply absolute right-0 p-1.5 mx-2 my-4 text-gray-400 rounded-full hover:text-gray-600 hover:bg-gray-200/50 active:opacity-50;
+  }
+
+  & .errorText {
+    @apply text-sm text-red-500;
+  }
+}

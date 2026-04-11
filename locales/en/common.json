@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "home": "Home",
+    "portfolio": "Projects",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "eyebrow": "Alejandro Guerra",
+    "title_line1": "I build software.",
+    "title_line2": "I design architectures.",
+    "intro": "I build digital products and design software architectures. From enterprise platforms to AI-powered tools, from idea to production.",
+    "cta_portfolio": "View projects",
+    "cta_contact": "Get in touch",
+    "featured_projects": "Featured projects",
+    "latest_posts": "Latest posts",
+    "no_posts_yet": "No posts yet. Working on the first ones.",
+    "all_projects": "View all projects",
+    "all_posts": "View all posts",
+    "cta_bottom_title": "Have something in mind?",
+    "cta_bottom_subtitle": "If you want to talk about a project, a collaboration, or just say hi, drop me a message.",
+    "cta_bottom_link": "Let's talk"
+  },
+  "projects": {
+    "zendinit": "P2P crowdshipping marketplace connecting people who send packages with travelers already making that trip between Spanish cities.",
+    "yappie": "Open source voice-to-ticket tool. Speak your ideas and get structured Jira issues automatically with Whisper and GPT-4o.",
+    "uyelarte": "An art and culture podcast. Each episode covers a different topic to bring art closer to non-specialist audiences."
+  },
+  "status": {
+    "live": "live",
+    "building": "building",
+    "beta": "beta"
+  },
+  "blog": {
+    "all_posts": "All posts"
+  },
+  "about": "About",
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Want to talk about a project, a collaboration, or just say hi? Drop me a message.",
+    "form": {
+      "name": {
+        "placeholder": "Your name",
+        "errors": {
+          "maxLength": "Is your name really that long?",
+          "required": "Please enter your name"
+        }
+      },
+      "email": {
+        "placeholder": "An email where I can reply",
+        "errors": {
+          "maxLength": "Is your email really that long?",
+          "pattern": "Please enter a valid email",
+          "required": "Please enter your email"
+        }
+      },
+      "subject": {
+        "placeholder": "Message subject",
+        "errors": {
+          "maxLength": "Pick a shorter subject",
+          "required": "Please enter a subject"
+        }
+      },
+      "message": {
+        "placeholder": "Write your message here",
+        "errors": {
+          "required": "You must write a message"
+        }
+      },
+      "submit": "Send message",
+      "sending": "Sending...",
+      "success_title": "Message sent",
+      "success": "I'll get back to you soon. Thanks for reaching out.",
+      "error": "Failed to send message. Please try again.",
+      "back_home": "Back to home"
+    }
+  }
+}

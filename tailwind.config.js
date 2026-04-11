@@ -1,17 +1,6 @@
-// @ts-check
-const { fontFamily } = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
-
-/** @type {import("tailwindcss/types").Config } */
+/** @type {import("tailwindcss").Config } */
 module.exports = {
-  content: [
-    './node_modules/pliny/**/*.js',
-    './app/**/*.{js,ts,jsx,tsx}',
-    './pages/**/*.{js,ts,tsx}',
-    './components/**/*.{js,ts,tsx}',
-    './layouts/**/*.{js,ts,tsx}',
-    './data/**/*.mdx',
-  ],
+  content: ['./node_modules/pliny/**/*.js', './src/**/*.{js,ts,jsx,tsx}', './data/**/*.mdx'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -19,58 +8,100 @@ module.exports = {
         11: '2.75rem',
         12: '3rem',
         13: '3.25rem',
-        14: '3.5rem',
+        14: '3.5rem'
       },
       fontFamily: {
-        sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
+        sans: ['var(--font-space-grotesk)', 'ui-sans-serif', 'system-ui', 'sans-serif']
       },
       colors: {
-        primary: colors.pink,
-        gray: colors.gray,
+        primary: {
+          DEFAULT: '#111827',
+          50: '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#374151',
+          800: '#1f2937',
+          900: '#111827',
+          950: '#030712'
+        },
+        secondary: {
+          DEFAULT: '#6b7280',
+          50: '#f9fafb',
+          100: '#f3f4f6',
+          200: '#e5e7eb',
+          300: '#d1d5db',
+          400: '#9ca3af',
+          500: '#6b7280',
+          600: '#4b5563',
+          700: '#374151',
+          800: '#1f2937',
+          900: '#111827',
+          950: '#030712'
+        }
       },
       zIndex: {
         60: '60',
         70: '70',
-        80: '80',
+        80: '80'
       },
-      typography: ({ theme }) => ({
+      typography: () => ({
         DEFAULT: {
           css: {
+            maxWidth: '42rem',
             a: {
-              color: theme('colors.primary.500'),
+              color: '#000',
+              textDecoration: 'underline',
+              textDecorationColor: '#d1d5db',
+              textUnderlineOffset: '3px',
               '&:hover': {
-                color: `${theme('colors.primary.600')}`,
+                textDecorationColor: '#000'
               },
-              code: { color: theme('colors.primary.400') },
+              code: { color: '#111827' }
             },
             'h1,h2': {
-              fontWeight: '700',
-              letterSpacing: theme('letterSpacing.tight'),
+              fontWeight: '500',
+              letterSpacing: '-0.025em',
+              color: '#000'
             },
             h3: {
-              fontWeight: '600',
+              fontWeight: '500',
+              color: '#000'
             },
             code: {
-              color: theme('colors.indigo.500'),
-            },
-          },
+              color: '#111827',
+              backgroundColor: '#f3f4f6',
+              padding: '0.125rem 0.375rem',
+              borderRadius: '0.25rem',
+              fontWeight: '400',
+              '&::before': { content: 'none' },
+              '&::after': { content: 'none' }
+            }
+          }
         },
         invert: {
           css: {
             a: {
-              color: theme('colors.primary.500'),
+              color: '#fff',
+              textDecorationColor: '#374151',
               '&:hover': {
-                color: `${theme('colors.primary.400')}`,
+                textDecorationColor: '#fff'
               },
-              code: { color: theme('colors.primary.400') },
+              code: { color: '#d1d5db' }
             },
             'h1,h2,h3,h4,h5,h6': {
-              color: theme('colors.gray.100'),
+              color: '#f3f4f6'
             },
-          },
-        },
-      }),
-    },
-  },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
-}
+            code: {
+              color: '#f3f4f6',
+              backgroundColor: '#1f2937'
+            }
+          }
+        }
+      })
+    }
+  }
+};

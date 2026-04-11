@@ -1,31 +1,31 @@
-import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer2/source-files'
-import { writeFileSync } from 'fs'
-import readingTime from 'reading-time'
-import { slug } from 'github-slugger'
-import path from 'path'
-import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic'
+import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer2/source-files';
+import { writeFileSync } from 'fs';
+import { slug } from 'github-slugger';
+import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
+import path from 'path';
+import readingTime from 'reading-time';
 // Remark packages
-import remarkGfm from 'remark-gfm'
-import remarkMath from 'remark-math'
-import { remarkAlert } from 'remark-github-blockquote-alert'
 import {
-  remarkExtractFrontmatter,
-  remarkCodeTitles,
-  remarkImgToJsx,
   extractTocHeadings,
-} from 'pliny/mdx-plugins/index.js'
+  remarkCodeTitles,
+  remarkExtractFrontmatter,
+  remarkImgToJsx
+} from 'pliny/mdx-plugins/index.js';
+import remarkGfm from 'remark-gfm';
+import { remarkAlert } from 'remark-github-blockquote-alert';
+import remarkMath from 'remark-math';
 // Rehype packages
-import rehypeSlug from 'rehype-slug'
-import rehypeAutolinkHeadings from 'rehype-autolink-headings'
-import rehypeKatex from 'rehype-katex'
-import rehypeCitation from 'rehype-citation'
-import rehypePrismPlus from 'rehype-prism-plus'
-import rehypePresetMinify from 'rehype-preset-minify'
-import siteMetadata from './data/siteMetadata'
-import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
+import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeCitation from 'rehype-citation';
+import rehypeKatex from 'rehype-katex';
+import rehypePresetMinify from 'rehype-preset-minify';
+import rehypePrismPlus from 'rehype-prism-plus';
+import rehypeSlug from 'rehype-slug';
+import siteMetadata from './data/siteMetadata';
 
-const root = process.cwd()
-const isProduction = process.env.NODE_ENV === 'production'
+const root = process.cwd();
+const isProduction = process.env.NODE_ENV === 'production';
 
 // heroicon mini link
 const icon = fromHtmlIsomorphic(
@@ -38,55 +38,56 @@ const icon = fromHtmlIsomorphic(
   </span>
 `,
   { fragment: true }
-)
+);
 
 const computedFields: ComputedFields = {
   readingTime: { type: 'json', resolve: (doc) => readingTime(doc.body.raw) },
   slug: {
     type: 'string',
-    resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, ''),
+    resolve: (doc) => doc._raw.flattenedPath.replace(/^.+?(\/)/, '')
   },
   path: {
     type: 'string',
-    resolve: (doc) => doc._raw.flattenedPath,
+    resolve: (doc) => doc._raw.flattenedPath
   },
   filePath: {
     type: 'string',
-    resolve: (doc) => doc._raw.sourceFilePath,
+    resolve: (doc) => doc._raw.sourceFilePath
   },
-  toc: { type: 'json', resolve: (doc) => extractTocHeadings(doc.body.raw) },
-}
+  toc: { type: 'json', resolve: (doc) => extractTocHeadings(doc.body.raw) }
+};
 
 /**
  * Count the occurrences of all tags across blog posts and write to json file
  */
 function createTagCount(allBlogs) {
-  const tagCount: Record<string, number> = {}
+  const tagCount: Record<string, number> = {};
   allBlogs.forEach((file) => {
     if (file.tags && (!isProduction || file.draft !== true)) {
       file.tags.forEach((tag) => {
-        const formattedTag = slug(tag)
+        const formattedTag = slug(tag);
         if (formattedTag in tagCount) {
-          tagCount[formattedTag] += 1
+          tagCount[formattedTag] += 1;
         } else {
-          tagCount[formattedTag] = 1
+          tagCount[formattedTag] = 1;
         }
-      })
+      });
     }
-  })
-  writeFileSync('./app/tag-data.json', JSON.stringify(tagCount))
+  });
+  writeFileSync('src/app/tag-data.json', JSON.stringify(tagCount));
 }
 
 function createSearchIndex(allBlogs) {
+  const search = siteMetadata?.search as { provider?: string; kbarConfig?: { searchDocumentsPath?: string } } | undefined;
   if (
-    siteMetadata?.search?.provider === 'kbar' &&
-    siteMetadata.search.kbarConfig.searchDocumentsPath
+    search?.provider === 'kbar' &&
+    search.kbarConfig?.searchDocumentsPath
   ) {
     writeFileSync(
-      `public/${path.basename(siteMetadata.search.kbarConfig.searchDocumentsPath)}`,
+      `public/${path.basename(search.kbarConfig!.searchDocumentsPath!)}`,
       JSON.stringify(allCoreContent(sortPosts(allBlogs)))
-    )
-    console.log('Local search index generated...')
+    );
+    console.log('Local search index generated...');
   }
 }
 
@@ -105,7 +106,7 @@ export const Blog = defineDocumentType(() => ({
     authors: { type: 'list', of: { type: 'string' } },
     layout: { type: 'string' },
     bibliography: { type: 'string' },
-    canonicalUrl: { type: 'string' },
+    canonicalUrl: { type: 'string' }
   },
   computedFields: {
     ...computedFields,
@@ -119,11 +120,11 @@ export const Blog = defineDocumentType(() => ({
         dateModified: doc.lastmod || doc.date,
         description: doc.summary,
         image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
-        url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
-      }),
-    },
-  },
-}))
+        url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`
+      })
+    }
+  }
+}));
 
 export const Authors = defineDocumentType(() => ({
   name: 'Authors',
@@ -138,10 +139,10 @@ export const Authors = defineDocumentType(() => ({
     twitter: { type: 'string' },
     linkedin: { type: 'string' },
     github: { type: 'string' },
-    layout: { type: 'string' },
+    layout: { type: 'string' }
   },
-  computedFields,
-}))
+  computedFields
+}));
 
 export default makeSource({
   contentDirPath: 'data',
@@ -154,7 +155,7 @@ export default makeSource({
       remarkCodeTitles,
       remarkMath,
       remarkImgToJsx,
-      remarkAlert,
+      remarkAlert
     ],
     rehypePlugins: [
       rehypeSlug,
@@ -163,20 +164,20 @@ export default makeSource({
         {
           behavior: 'prepend',
           headingProperties: {
-            className: ['content-header'],
+            className: ['content-header']
           },
-          content: icon,
-        },
+          content: icon
+        }
       ],
       rehypeKatex,
       [rehypeCitation, { path: path.join(root, 'data') }],
       [rehypePrismPlus, { defaultLanguage: 'js', ignoreMissing: true }],
-      rehypePresetMinify,
-    ],
+      rehypePresetMinify
+    ]
   },
   onSuccess: async (importData) => {
-    const { allBlogs } = await importData()
-    createTagCount(allBlogs)
-    createSearchIndex(allBlogs)
-  },
-})
+    const { allBlogs } = await importData();
+    createTagCount(allBlogs);
+    createSearchIndex(allBlogs);
+  }
+});
