@@ -128,7 +128,7 @@ The site uses a consistent spacing scale based on multiples of 4px:
 
 - Maximum content width: `max-w-2xl` (42rem / 672px)
 - All pages share this width — homepage, portfolio, about, contact, blog posts
-- No full-width bleeds, no hero images, no sidebar layouts
+- No full-width bleeds, no sidebar layouts. The homepage hero photo is the single exception — it sits behind the content with a gradient mask, it doesn't push the text layout around
 - Content is always left-aligned (not centered) within the container
 - The container itself is horizontally centered on the page
 
@@ -173,7 +173,7 @@ Status dots with `building` status use `animate-pulse` to convey active developm
 ### Photography and imagery
 
 - **Avatar:** Grayscale, small (64-72px), round. Used only on the About page.
-- **No hero images.** No project screenshots on the homepage. No stock photography.
+- **Hero photo:** The homepage features a B&W portrait on the right side of the hero section (desktop only), fading into the background via a left-to-right gradient mask. This is the only large image on the site. No project screenshots on the homepage. No stock photography.
 - **Blog posts:** May include diagrams, screenshots, or code blocks. Images within blog posts should have a subtle 1px border in `--border` color.
 - **Project cards:** No images. Projects are represented by their text description and a colored status dot. The absence of images is a deliberate brand choice — it says "the work speaks for itself."
 
@@ -212,7 +212,7 @@ Status dots with `building` status use `animate-pulse` to convey active developm
 
 ## Brand don'ts
 
-- **Don't add gradients.** Not on backgrounds, not on text, not on buttons.
+- **Don't add decorative gradients.** Not on backgrounds, not on text, not on buttons. Functional gradients used as legibility masks (e.g. fading the hero photo into the background) are allowed — they are composition tools, not decoration.
 - **Don't use colored backgrounds.** The only backgrounds are `--bg-primary` and `--bg-surface`.
 - **Don't add testimonials or social proof badges.** No "Featured in..." bars.
 - **Don't add a skills/tech radar/progress bars section.** The projects demonstrate the skills.

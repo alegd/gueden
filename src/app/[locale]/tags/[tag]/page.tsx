@@ -1,5 +1,4 @@
 import { genPageMetadata } from '@/app/seo';
-import tagData from '@/app/tag-data.json';
 import siteMetadata from '@/data/siteMetadata';
 import { allBlogs } from 'contentlayer/generated';
 import { slug } from 'github-slugger';
@@ -26,15 +25,6 @@ export async function generateMetadata({
     }
   });
 }
-
-export const generateStaticParams = async () => {
-  const tagCounts = tagData as Record<string, number>;
-  const tagKeys = Object.keys(tagCounts);
-  const paths = tagKeys.map((tag) => ({
-    tag: encodeURI(tag)
-  }));
-  return paths;
-};
 
 export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
   const { tag: rawTag } = await params;
