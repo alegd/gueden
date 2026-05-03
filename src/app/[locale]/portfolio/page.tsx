@@ -59,7 +59,7 @@ export default async function PortfolioPage() {
                 {tProjects(project.descriptionKey)}
               </p>
               {project.tech && (
-                <p className="mt-2 text-sm text-muted-foreground/60">{project.tech.join(' · ')}</p>
+                <p className="mt-2 text-sm text-muted-foreground">{project.tech.join(' · ')}</p>
               )}
             </a>
           </Animate>

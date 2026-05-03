@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'Alejandro Guerra — Developer & Solution Architect',
   author: 'Alejandro Guerra',
-  headerTitle: 'gueden',
+  headerTitle: 'Alejandro Guerra',
   description:
     'Personal site of Alejandro Guerra. Fullstack developer and solution architect based in Madrid, building Zendinit, Yappie and other side projects.',
   language: 'es-ES',
