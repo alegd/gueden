@@ -5,16 +5,15 @@ import ListLayout from 'src/layouts/ListLayoutWithTags';
 
 const POSTS_PER_PAGE = 5;
 
-export const generateStaticParams = async () => {
-  const totalPages = Math.ceil(allBlogs.length / POSTS_PER_PAGE);
-  const paths = Array.from({ length: totalPages }, (_, i) => ({ page: (i + 1).toString() }));
-  return paths;
-};
-
-export default async function Page({ params }: { params: Promise<{ page: string }> }) {
-  const { page } = await params;
+export default async function Page({
+  params
+}: {
+  params: Promise<{ page: string; locale: string }>;
+}) {
+  const { page, locale } = await params;
   const t = await getTranslations('blog');
-  const posts = allCoreContent(sortPosts(allBlogs));
+  const localizedPosts = allBlogs.filter((post) => post.language === locale);
+  const posts = allCoreContent(sortPosts(localizedPosts));
   const pageNumber = parseInt(page as string);
   const initialDisplayPosts = posts.slice(
     POSTS_PER_PAGE * (pageNumber - 1),
@@ -22,7 +21,7 @@ export default async function Page({ params }: { params: Promise<{ page: string 
   );
   const pagination = {
     currentPage: pageNumber,
-    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
+    totalPages: Math.ceil(posts.length / POSTS_PER_PAGE)
   };
 
   return (

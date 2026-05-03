@@ -26,13 +26,22 @@ export async function generateMetadata({
   });
 }
 
-export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
-  const { tag: rawTag } = await params;
+export default async function TagPage({
+  params
+}: {
+  params: Promise<{ tag: string; locale: string }>;
+}) {
+  const { tag: rawTag, locale } = await params;
   const tag = decodeURI(rawTag);
   // Capitalize first letter and convert space to dash
   const title = tag[0].toUpperCase() + tag.split(' ').join('-').slice(1);
   const filteredPosts = allCoreContent(
-    sortPosts(allBlogs.filter((post) => post.tags && post.tags.map((t) => slug(t)).includes(tag)))
+    sortPosts(
+      allBlogs.filter(
+        (post) =>
+          post.language === locale && post.tags && post.tags.map((t) => slug(t)).includes(tag)
+      )
+    )
   );
   if (filteredPosts.length === 0) {
     return notFound();

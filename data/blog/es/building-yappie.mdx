@@ -1,0 +1,128 @@
+---
+title: 'Cómo construí Yappie: de una nota de voz a producción en 4 semanas'
+date: '2026-05-03'
+tags: ['yappie', 'side-project', 'tdd', 'ai']
+draft: false
+summary: 'Un dev con 10 años de experiencia construye su primer producto open source. TDD, IA como copiloto, y todo lo que salió mal en el camino.'
+authors: ['default']
+---
+
+Llevo 10 años siendo desarrollador. Construí productos para otra gente. Mantuve codebases legacy. Lancé features que nadie pidió. Pero nunca construí algo mío.
+
+Eso cambió hace cuatro semanas.
+
+## El problema que no podía ignorar
+
+Después de cada reunión, alguien dice cinco cosas. Dos quedan apuntadas. Tres se olvidan al día siguiente. ¿Y las que sí se apuntan? Terminan siendo tickets como "[Bug] Problema con login" sin contexto, sin asignado, sin prioridad.
+
+Pasé años viendo morir buenas ideas entre la sala de reuniones y el tablero de Jira. No porque a la gente no le importe, sino porque escribir un ticket decente lleva 3-5 minutos y nadie tiene la paciencia.
+
+Así que construí Yappie.
+
+## Qué hace Yappie
+
+Grabás una nota de voz después de una reunión, una standup o una sesión de brainstorm. Yappie la transcribe con Whisper, la divide en tareas individuales con GPT-4o-mini, y genera tickets de Jira completos — con título, descripción, criterios de aceptación, labels, prioridad y asignado.
+
+La feature clave: describís tu proyecto una sola vez — miembros del equipo, stack técnico, convenciones, prioridades — y la IA usa ese contexto en cada audio. La diferencia es enorme.
+
+Sin contexto: `[Bug] Problema con login en Safari`
+
+Con contexto: `[Bug] Login: formulario roto en Safari — prioridad: crítica, labels: bug, auth, asignado: Ana (frontend)`
+
+El mismo modelo de IA. El mismo coste. Calidad completamente diferente. A veces el mejor prompt engineering no es sobre el prompt. Es sobre darle a la IA mejor información.
+
+## Semana 1: planificación
+
+Antes de escribir una sola línea de código, pasé toda la primera semana tomando decisiones.
+
+Ocho Architecture Decision Records. Monorepo con Turborepo. TDD desde el primer commit. Licencia AGPL-3.0. Next.js 16. NestJS. PostgreSQL. Todo el pipeline diseñado en papel antes de tocar el teclado.
+
+Hubo gente que me preguntó si era overengineering para un side project. Quizás. Pero también es la razón por la que las siguientes tres semanas fueron tan rápidas.
+
+## Semana 2: el pipeline
+
+Aquí pasa la magia.
+
+El pipeline de procesamiento de audio corre asíncrono con BullMQ: subida → transcripción (Whisper) → descomposición en tareas (GPT-4o-mini) → generación de tickets (GPT-4o-mini) → almacenamiento de borradores. Cada paso empuja actualizaciones en tiempo real por WebSocket para que el usuario vea el progreso en vivo.
+
+Lo probé grabando una nota de voz de 30 segundos: "Hay un bug en el checkout, cuando los usuarios añaden más de 3 items el total no se actualiza. Además, Luis tiene que añadir el endpoint de filtro para productos por categoría. Y María mencionó que necesitamos rediseñar la página del carrito vacío."
+
+Tres tareas. Mezcladas. Desordenadas. Muy real.
+
+Yappie generó tres tickets:
+
+1. **[Bug]** El total del checkout no se actualiza con 3+ items — prioridad: crítica, asignado: Ana
+2. **[Feature]** Añadir endpoint de filtro de productos por categoría — asignado: Luis
+3. **[Improvement]** Rediseñar página del carrito vacío — asignado: María
+
+La primera vez que vi ese output supe que el proyecto valía la pena terminarlo.
+
+## Semana 3: el frontend y Jira
+
+Construí todo el dashboard web en una semana. Next.js 16 con Turbopack hizo que el hot reload fuera prácticamente instantáneo. El React Compiler significó cero `useMemo` y cero `useCallback` — me pasé una semana entera sin pensar en memoización y todo corría suave.
+
+La integración con Jira fue la parte más dura. OAuth 2.0, encriptación de tokens con AES-256-GCM, mapeo de campos del ticket a la API de Jira. Hubo un viernes en el que nada compilaba y no tenía idea por qué. Pero cuando funcionó, esa sensación de hacer click en "Exportar a Jira" y ver tres tickets perfectamente formateados aparecer en tu tablero... ese fue el momento.
+
+## Semana 4: seguridad y producción
+
+La semana que nadie pone en su portfolio.
+
+Me senté con la checklist del OWASP Top 10 y revisé cada punto. Ahí descubrí que los tokens de Jira estaban guardados en texto plano en la base de datos. Si alguien accedía a la DB, tenía acceso al Jira de cada usuario. Lo arreglé con encriptación AES-256-GCM. Configuré Sentry para tracking de errores. Añadí rate limiting, validación de variables de entorno con Zod, y revisé cada endpoint buscando problemas de control de acceso.
+
+No es sexy. No hay GIF que mostrar. Pero es la diferencia entre un toy project y algo en lo que la gente puede confiar.
+
+## Los números
+
+Cuatro semanas de trabajo produjeron:
+
+- **284 commits**
+- **481 tests** (169 API + 309 web + 3 suites E2E)
+- **95.7% de cobertura en API**, 89.4% en web
+- **41 endpoints de API documentados** (Swagger)
+- **~7,500 líneas de TypeScript**
+
+El stack: NestJS 11, Next.js 16, PostgreSQL 16, Redis/BullMQ, OpenAI (Whisper + GPT-4o-mini), Vitest, Playwright, Docker, Vercel + Coolify.
+
+## TDD: lo que aprendí de verdad
+
+Todo el mundo habla de TDD. Casi nadie lo hace en serio.
+
+Mi flujo: escribo el test primero — qué espero que pase. Lo corro. Rojo. Escribo el código mínimo para que pase. Verde. Refactorizo. Repito.
+
+Para la semana 3 tenía 400+ tests y podía refactorizar lo que fuera sin miedo. La red de seguridad era real. Atrapé al menos una docena de bugs que de otra forma habrían llegado a producción.
+
+Lo que no funcionó: testear server components de Next.js 16. La historia de testing para componentes con cache, server actions, y los nuevos async params todavía no es buena. Por eso la cobertura de web (89%) es más baja que la de API (95%).
+
+## La IA como copiloto
+
+Usé Claude Code durante todo el desarrollo. Es excelente generando boilerplate de tests y scaffolding de módulos. Pero las decisiones arquitecturales las seguís tomando vos.
+
+El flujo de TDD encaja perfecto con IA: yo escribo el test (que describe la intención), la IA implementa, yo reviso y refactorizo. El test es la fuente de verdad, no la IA.
+
+¿Habría terminado en 4 semanas sin IA? Probablemente no. Ocho semanas, quizás. El ahorro de tiempo fue real, sobre todo en reducción de boilerplate y detectar patrones que habría copy-pasteado a mano.
+
+## El modelo de negocio
+
+Tier gratuito: 20 minutos de audio al mes. Pro: 4,99€/mes por 100 minutos.
+
+Elegí limitar por minutos de audio en lugar de número de subidas porque mi coste escala con la duración del audio, no con la cantidad de subidas. Un usuario que graba 5 audios de 5 minutos me cuesta lo mismo que uno con 25 audios de 1 minuto.
+
+Coste por usuario gratuito: ~0,20€/mes. A 4,99€ por Pro con 100 minutos, el margen funciona. Los early adopters bloquean el precio para siempre.
+
+El código es open source (AGPL-3.0). Mismo modelo que n8n, GitLab y Cal.com: libre para usar, libre para forkear, pero si querés correrlo como SaaS sin liberar tus cambios, necesitás una licencia comercial.
+
+## Lo que viene
+
+Yappie está vivo. Funciona. Pero 15 visitantes en la primera semana y cero registros orgánicos me dijeron algo claramente: el producto no es el problema. La distribución sí.
+
+Así que el próximo capítulo es sobre poner Yappie delante de la gente que lo necesita. LinkedIn, Indie Hackers, Dev.to, y eventualmente ProductHunt. Y del lado del producto: mapeo de tipos de issue para los exports a Jira, mejor deduplicación de tickets, y una página de seguridad que permita a CTOs decir que sí sin un proceso de evaluación de tres meses.
+
+Si llegaste hasta acá y gestionás tareas con Jira, probalo. Es gratis, te lleva 30 segundos registrarte, y me encantaría tu feedback.
+
+**[yappie.gueden.com](https://yappie.gueden.com)**
+
+**[Código fuente en GitLab](https://gitlab.com/alegd/yappie)**
+
+---
+
+_Si estás construyendo algo y nunca lo lanzás — no necesitás seis meses. Necesitás un plan, una deadline, y empezar._

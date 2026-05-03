@@ -78,11 +78,10 @@ function createTagCount(allBlogs) {
 }
 
 function createSearchIndex(allBlogs) {
-  const search = siteMetadata?.search as { provider?: string; kbarConfig?: { searchDocumentsPath?: string } } | undefined;
-  if (
-    search?.provider === 'kbar' &&
-    search.kbarConfig?.searchDocumentsPath
-  ) {
+  const search = siteMetadata?.search as
+    | { provider?: string; kbarConfig?: { searchDocumentsPath?: string } }
+    | undefined;
+  if (search?.provider === 'kbar' && search.kbarConfig?.searchDocumentsPath) {
     writeFileSync(
       `public/${path.basename(search.kbarConfig!.searchDocumentsPath!)}`,
       JSON.stringify(allCoreContent(sortPosts(allBlogs)))
@@ -110,6 +109,13 @@ export const Blog = defineDocumentType(() => ({
   },
   computedFields: {
     ...computedFields,
+    language: {
+      type: 'string',
+      resolve: (doc) => {
+        const parts = doc._raw.flattenedPath.split('/');
+        return parts[1] || 'es';
+      }
+    },
     structuredData: {
       type: 'json',
       resolve: (doc) => ({

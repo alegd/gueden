@@ -3,7 +3,7 @@ import 'katex/dist/katex.css';
 
 import { components } from '@/components/MDXComponents';
 import siteMetadata from '@/data/siteMetadata';
-import type { Authors, Blog } from 'contentlayer/generated';
+import type { Authors } from 'contentlayer/generated';
 import { allAuthors, allBlogs } from 'contentlayer/generated';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -77,16 +77,16 @@ export async function generateMetadata({
 export default async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
   const { slug: slugParts } = await params;
   const slug = decodeURI(slugParts.join('/'));
-  // Filter out drafts in production
-  const sortedCoreContents = allCoreContent(sortPosts(allBlogs));
-  const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug);
-  if (postIndex === -1) {
+  const post = allBlogs.find((p) => p.slug === slug);
+  if (!post) {
     return notFound();
   }
 
+  const localizedPosts = allBlogs.filter((p) => p.language === post.language);
+  const sortedCoreContents = allCoreContent(sortPosts(localizedPosts));
+  const postIndex = sortedCoreContents.findIndex((p) => p.slug === slug);
   const prev = sortedCoreContents[postIndex + 1];
   const next = sortedCoreContents[postIndex - 1];
-  const post = allBlogs.find((p) => p.slug === slug) as Blog;
   const authorList = post?.authors || ['default'];
   const authorDetails = authorList.map((author) => {
     const authorResults = allAuthors.find((p) => p.slug === author);

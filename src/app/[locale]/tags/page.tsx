@@ -1,11 +1,20 @@
 import { genPageMetadata } from '@/app/seo';
-import tagData from '@/app/tag-data.json';
 import Tag from '@/components/Tag';
+import { allBlogs } from 'contentlayer/generated';
+import { slug as slugify } from 'github-slugger';
 
 export const metadata = genPageMetadata({ title: 'Tags', description: 'Things I blog about' });
 
-export default async function Page() {
-  const tagCounts = tagData as Record<string, number>;
+export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const tagCounts: Record<string, number> = {};
+  for (const post of allBlogs) {
+    if (post.language !== locale || post.draft === true) continue;
+    for (const tag of post.tags ?? []) {
+      const key = slugify(tag);
+      tagCounts[key] = (tagCounts[key] ?? 0) + 1;
+    }
+  }
   const tagKeys = Object.keys(tagCounts);
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a]);
 
