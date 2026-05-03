@@ -11,6 +11,7 @@ import { Analytics } from '@vercel/analytics/react';
 import { Metadata } from 'next';
 import { getMessages } from 'next-intl/server';
 import { Space_Grotesk } from 'next/font/google';
+import Script from 'next/script';
 import { SearchConfig, SearchProvider } from 'pliny/search';
 import { Providers } from '../providers';
 
@@ -122,6 +123,15 @@ export default async function RootLayout({
 
       {siteMetadata.analytics?.googleAnalytics && (
         <GoogleAnalytics gaId={siteMetadata.analytics?.googleAnalytics.googleAnalyticsId} />
+      )}
+
+      {process.env.NEXT_PUBLIC_UMAMI_SRC && process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
+        <Script
+          defer
+          src={process.env.NEXT_PUBLIC_UMAMI_SRC}
+          data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+          strategy="afterInteractive"
+        />
       )}
     </html>
   );

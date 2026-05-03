@@ -17,7 +17,8 @@ const siteMetadata = {
     {
       name: 'linkedin',
       link: 'https://www.linkedin.com/in/alejandro-guerra-denis-33a138a4'
-    }
+    },
+    { name: 'x', link: 'https://x.com/alegueden' }
   ],
   locale: 'es-ES',
   stickyNav: true,
