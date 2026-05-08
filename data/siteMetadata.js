@@ -1,4 +1,4 @@
-/** @type {import("pliny/config").PlinyConfig & { descriptionEs: string }} */
+/** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Alejandro Guerra — Developer & Solution Architect',
   author: 'Alejandro Guerra',

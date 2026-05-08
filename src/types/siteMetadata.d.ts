@@ -4,6 +4,7 @@ declare module '@/data/siteMetadata' {
     author: string;
     headerTitle: string;
     description: string;
+    descriptionEs: string;
     language: string;
     theme: string;
     siteUrl: string;
@@ -12,7 +13,18 @@ declare module '@/data/siteMetadata' {
     socialBanner: string;
     email: string;
     social: Array<{
-      name: 'github' | 'linkedin' | 'twitter' | 'x' | 'mail' | 'facebook' | 'youtube' | 'medium' | 'mastodon' | 'threads' | 'instagram';
+      name:
+        | 'github'
+        | 'linkedin'
+        | 'twitter'
+        | 'x'
+        | 'mail'
+        | 'facebook'
+        | 'youtube'
+        | 'medium'
+        | 'mastodon'
+        | 'threads'
+        | 'instagram';
       link: string;
     }>;
     locale: string;
