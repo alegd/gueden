@@ -1,4 +1,5 @@
 import { genPageMetadata } from '@/app/seo';
+import { Animate } from '@/components/Animate';
 import Tag from '@/components/Tag';
 import { allBlogs } from 'contentlayer/generated';
 import { slug as slugify } from 'github-slugger';
@@ -21,18 +22,22 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   return (
     <div>
-      <div className="pt-6 pb-8">
-        <h1 className="text-3xl font-medium tracking-tight md:text-4xl">Tags</h1>
-      </div>
-      <div className="flex flex-wrap gap-4">
-        {tagKeys.length === 0 && <p className="text-muted-foreground">No tags found.</p>}
-        {sortedTags.map((t) => (
-          <span key={t} className="text-sm">
-            <Tag text={t} />
-            <span className="ml-1 text-muted-foreground">({tagCounts[t]})</span>
-          </span>
-        ))}
-      </div>
+      <Animate>
+        <div className="pt-6 pb-8">
+          <h1 className="text-3xl font-medium tracking-tight md:text-4xl">Tags</h1>
+        </div>
+      </Animate>
+      <Animate delay={80}>
+        <div className="flex flex-wrap gap-4">
+          {tagKeys.length === 0 && <p className="text-muted-foreground">No tags found.</p>}
+          {sortedTags.map((t) => (
+            <span key={t} className="text-sm">
+              <Tag text={t} />
+              <span className="ml-1 text-muted-foreground">({tagCounts[t]})</span>
+            </span>
+          ))}
+        </div>
+      </Animate>
     </div>
   );
 }

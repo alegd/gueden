@@ -1,5 +1,6 @@
 'use client';
 
+import { Animate } from '@/components/Animate';
 import { CustomLink as Link } from '@/components/Link';
 import Tag from '@/components/Tag';
 import siteMetadata from '@/data/siteMetadata';
@@ -61,20 +62,22 @@ export default function ListLayoutWithTags({
   posts,
   title,
   initialDisplayPosts = [],
-  pagination,
+  pagination
 }: ListLayoutProps) {
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts;
 
   return (
     <div>
-      <div className="pt-6 pb-8">
-        <h1 className="text-3xl font-medium tracking-tight md:text-4xl">{title}</h1>
-      </div>
+      <Animate>
+        <div className="pt-6 pb-8">
+          <h1 className="text-3xl font-medium tracking-tight md:text-4xl">{title}</h1>
+        </div>
+      </Animate>
       <ul className="divide-y divide-border">
-        {displayPosts.map((post) => {
+        {displayPosts.map((post, i) => {
           const { path, date, title, summary, tags } = post;
           return (
-            <li key={path} className="py-6">
+            <Animate key={path} as="li" delay={i * 80} className="py-6">
               <article>
                 <time
                   dateTime={date}
@@ -95,16 +98,16 @@ export default function ListLayoutWithTags({
                     ))}
                   </div>
                 )}
-                {summary && (
-                  <p className="mt-3 text-sm text-muted-foreground">{summary}</p>
-                )}
+                {summary && <p className="mt-3 text-sm text-muted-foreground">{summary}</p>}
               </article>
-            </li>
+            </Animate>
           );
         })}
       </ul>
       {pagination && pagination.totalPages > 1 && (
-        <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+        <Animate delay={displayPosts.length * 80}>
+          <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+        </Animate>
       )}
     </div>
   );
