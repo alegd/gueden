@@ -1,3 +1,4 @@
+import { Animate } from '@/components/Animate';
 import Comments from '@/components/Comments';
 import Image from '@/components/Image';
 import PageTitle from '@/components/PageTitle';
@@ -27,28 +28,36 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
       <ScrollTopAndComment />
       <article>
         <div>
-          <div className="space-y-1 dark:border-gray-700 pb-10 text-center">
-            <div className="w-full">
-              <Bleed>
-                <div className="relative w-full aspect-[2/1]">
-                  <Image src={displayImage} alt={title} fill className="object-cover" />
-                </div>
-              </Bleed>
+          <Animate>
+            <div className="space-y-1 dark:border-gray-700 pb-10 text-center">
+              <div className="w-full">
+                <Bleed>
+                  <div className="relative w-full aspect-[2/1]">
+                    <Image src={displayImage} alt={title} fill className="object-cover" />
+                  </div>
+                </Bleed>
+              </div>
+              <div className="relative pt-10">
+                <PageTitle>{title}</PageTitle>
+              </div>
             </div>
-            <div className="relative pt-10">
-              <PageTitle>{title}</PageTitle>
-            </div>
-          </div>
-          <div className="mx-auto py-4 max-w-2xl dark:prose-invert prose">{children}</div>
+          </Animate>
+          <Animate>
+            <div className="mx-auto py-4 max-w-2xl dark:prose-invert prose">{children}</div>
+          </Animate>
           {siteMetadata.comments && (
-            <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
-              <Comments slug={slug} />
-            </div>
+            <Animate>
+              <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
+                <Comments slug={slug} />
+              </div>
+            </Animate>
           )}
           <footer>
-            <div className="flex sm:flex-row flex-col sm:justify-between font-medium">
-              {(next || prev) && <PostsNavigationButtons next={next} prev={prev} />}
-            </div>
+            <Animate>
+              <div className="flex sm:flex-row flex-col sm:justify-between font-medium">
+                {(next || prev) && <PostsNavigationButtons next={next} prev={prev} />}
+              </div>
+            </Animate>
           </footer>
         </div>
       </article>
