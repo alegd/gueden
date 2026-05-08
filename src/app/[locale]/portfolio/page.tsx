@@ -50,7 +50,7 @@ export default async function PortfolioPage() {
                 />
                 <span className="font-medium">{project.title}</span>
                 {project.status && (
-                  <span className="rounded-full bg-muted px-2 py-0.5 text-[11px] uppercase text-muted-foreground">
+                  <span className="rounded-full bg-muted px-2 py-0.5 text-sm uppercase text-muted-foreground">
                     {tStatus(project.status)}
                   </span>
                 )}

@@ -46,7 +46,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
             </div>
           )}
           <footer>
-            <div className="flex sm:flex-row flex-col sm:justify-between font-medium text-sm sm:text-base">
+            <div className="flex sm:flex-row flex-col sm:justify-between font-medium">
               {(next || prev) && <PostsNavigationButtons next={next} prev={prev} />}
             </div>
           </footer>

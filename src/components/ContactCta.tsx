@@ -15,7 +15,7 @@ export function ContactCta() {
       <div className="mx-auto p-4 flex flex-col items-center gap-5 sm:flex-row sm:justify-between border rounded-lg">
         <div>
           <p className="text-lg font-medium">{t('cta_bottom_title')}</p>
-          <p className="mt-2 text-muted-foreground text-base">{t('cta_bottom_subtitle')}</p>
+          <p className="mt-2 text-muted-foreground">{t('cta_bottom_subtitle')}</p>
         </div>
 
         <Link
