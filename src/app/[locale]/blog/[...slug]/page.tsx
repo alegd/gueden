@@ -50,6 +50,8 @@ export async function generateMetadata({
     };
   });
 
+  const ogLocale = post.language === 'es' ? 'es_ES' : 'en_US';
+
   return {
     title: post.title,
     description: post.summary,
@@ -57,7 +59,7 @@ export async function generateMetadata({
       title: post.title,
       description: post.summary,
       siteName: siteMetadata.title,
-      locale: 'en_US',
+      locale: ogLocale,
       type: 'article',
       publishedTime: publishedAt,
       modifiedTime: modifiedAt,

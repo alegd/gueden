@@ -5,7 +5,7 @@ import { MDXLayoutRenderer } from 'pliny/mdx-components';
 import { coreContent } from 'pliny/utils/contentlayer';
 import AuthorLayout from 'src/layouts/AuthorLayout';
 
-export const metadata = genPageMetadata({ title: 'About' });
+export const generateMetadata = () => genPageMetadata({ title: 'About' });
 
 export default function Page() {
   const author = allAuthors.find((p) => p.slug === 'default') as Authors;

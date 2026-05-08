@@ -6,7 +6,7 @@ import ListLayout from 'src/layouts/ListLayoutWithTags';
 
 const POSTS_PER_PAGE = 5;
 
-export const metadata = genPageMetadata({ title: 'Blog' });
+export const generateMetadata = () => genPageMetadata({ title: 'Blog' });
 
 export default async function BlogPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

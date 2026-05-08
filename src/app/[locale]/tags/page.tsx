@@ -3,7 +3,8 @@ import Tag from '@/components/Tag';
 import { allBlogs } from 'contentlayer/generated';
 import { slug as slugify } from 'github-slugger';
 
-export const metadata = genPageMetadata({ title: 'Tags', description: 'Things I blog about' });
+export const generateMetadata = () =>
+  genPageMetadata({ title: 'Tags', description: 'Things I blog about' });
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

@@ -3,7 +3,7 @@ import { Animate } from '@/components/Animate';
 import projectsData from '@/data/projectsData';
 import { getTranslations } from 'next-intl/server';
 
-export const metadata = genPageMetadata({ title: 'Portfolio' });
+export const generateMetadata = () => genPageMetadata({ title: 'Portfolio' });
 
 const defaultDotColors: Record<string, string> = {
   live: '#10B981',

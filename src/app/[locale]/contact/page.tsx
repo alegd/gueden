@@ -4,7 +4,7 @@ import SectionContainer from '@/components/SectionContainer';
 import { getTranslations } from 'next-intl/server';
 import { ContactForm } from '../../ui/contact/ContactForm';
 
-export const metadata = genPageMetadata({ title: 'Contact' });
+export const generateMetadata = () => genPageMetadata({ title: 'Contact' });
 
 export default async function Page() {
   const t = await getTranslations('contact');

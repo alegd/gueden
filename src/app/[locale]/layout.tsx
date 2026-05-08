@@ -21,45 +21,56 @@ const space_grotesk = Space_Grotesk({
   variable: '--font-space-grotesk'
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteMetadata.siteUrl),
-  title: {
-    default: siteMetadata.title,
-    template: `%s | ${siteMetadata.title}`
-  },
-  description: siteMetadata.description,
-  openGraph: {
-    title: siteMetadata.title,
-    description: siteMetadata.description,
-    url: './',
-    siteName: siteMetadata.title,
-    images: [siteMetadata.socialBanner],
-    locale: 'en_US',
-    type: 'website'
-  },
-  alternates: {
-    canonical: './',
-    types: {
-      'application/rss+xml': `${siteMetadata.siteUrl}/feed.xml`
-    }
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const description = locale === 'es' ? siteMetadata.descriptionEs : siteMetadata.description;
+  const ogLocale = locale === 'es' ? 'es_ES' : 'en_US';
+
+  return {
+    metadataBase: new URL(siteMetadata.siteUrl),
+    title: {
+      default: siteMetadata.title,
+      template: `%s | ${siteMetadata.title}`
+    },
+    description,
+    openGraph: {
+      title: siteMetadata.title,
+      description,
+      url: './',
+      siteName: siteMetadata.title,
+      images: [siteMetadata.socialBanner],
+      locale: ogLocale,
+      type: 'website'
+    },
+    alternates: {
+      canonical: './',
+      types: {
+        'application/rss+xml': `${siteMetadata.siteUrl}/feed.xml`
+      }
+    },
+    robots: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1
+      }
+    },
+    twitter: {
+      title: siteMetadata.title,
+      description,
+      card: 'summary_large_image',
+      images: [siteMetadata.socialBanner]
     }
-  },
-  twitter: {
-    title: siteMetadata.title,
-    card: 'summary_large_image',
-    images: [siteMetadata.socialBanner]
-  }
-};
+  };
+}
 
 export default async function RootLayout({
   children,
