@@ -140,7 +140,12 @@ export function ContactForm() {
             validation={{ required: { value: true, message: t('form.message.errors.required') } }}
           />
 
-          <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-language={locale} />
+          <div
+            className="cf-turnstile"
+            data-sitekey={TURNSTILE_SITE_KEY}
+            data-language={locale}
+            data-appearance="interaction-only"
+          />
 
           {status === 'error' && <p className="text-sm text-red-500">{t('form.error')}</p>}
 
