@@ -3,10 +3,13 @@
 import { Button } from '@/components/button/Button';
 import { ButtonLink } from '@/components/button/ButtonLink';
 import { TextInput } from '@/components/form/text-input/TextInput';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
+import Script from 'next/script';
 import { useState } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import styles from './ContactForm.module.css';
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 type FormValues = {
   name: string;
@@ -19,16 +22,29 @@ type FormStatus = 'idle' | 'sending' | 'sent' | 'error';
 
 export function ContactForm() {
   const t = useTranslations('contact');
+  const locale = useLocale();
   const [status, setStatus] = useState<FormStatus>('idle');
   const methods = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    const tokenInput = document.querySelector<HTMLInputElement>(
+      'input[name="cf-turnstile-response"]'
+    );
+    const honeypotInput = document.querySelector<HTMLInputElement>('input[name="website"]');
+    const turnstileToken = tokenInput?.value;
+    const website = honeypotInput?.value;
+
+    if (!turnstileToken) {
+      setStatus('error');
+      return;
+    }
+
     setStatus('sending');
 
     const res = await fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ ...data, turnstileToken, website })
     });
 
     if (res.ok) {
@@ -36,6 +52,7 @@ export function ContactForm() {
       methods.reset();
     } else {
       setStatus('error');
+      window.turnstile?.reset();
     }
   };
 
@@ -66,54 +83,74 @@ export function ContactForm() {
   }
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className={styles.container}>
-        <TextInput
-          name="name"
-          placeholder={t('form.name.placeholder')}
-          validation={{
-            required: { value: true, message: t('form.name.errors.required') },
-            maxLength: 255,
-          }}
-        />
+    <>
+      <Script
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+        strategy="afterInteractive"
+      />
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} className={styles.container}>
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              left: '-9999px',
+              opacity: 0,
+              pointerEvents: 'none'
+            }}
+          />
 
-        <TextInput
-          name="email"
-          placeholder={t('form.email.placeholder')}
-          validation={{
-            required: { value: true, message: t('form.email.errors.required') },
-            pattern: { value: /^\S+@\S+$/i, message: t('form.email.errors.pattern') },
-            maxLength: 255,
-          }}
-        />
+          <TextInput
+            name="name"
+            placeholder={t('form.name.placeholder')}
+            validation={{
+              required: { value: true, message: t('form.name.errors.required') },
+              maxLength: 255
+            }}
+          />
 
-        <TextInput
-          name="subject"
-          placeholder={t('form.subject.placeholder')}
-          validation={{
-            required: { value: true, message: t('form.subject.errors.required') },
-            maxLength: 255,
-          }}
-        />
+          <TextInput
+            name="email"
+            placeholder={t('form.email.placeholder')}
+            validation={{
+              required: { value: true, message: t('form.email.errors.required') },
+              pattern: { value: /^\S+@\S+$/i, message: t('form.email.errors.pattern') },
+              maxLength: 255
+            }}
+          />
 
-        <TextInput
-          as="textarea"
-          rows={5}
-          name="message"
-          placeholder={t('form.message.placeholder')}
-          validation={{ required: { value: true, message: t('form.message.errors.required') } }}
-        />
+          <TextInput
+            name="subject"
+            placeholder={t('form.subject.placeholder')}
+            validation={{
+              required: { value: true, message: t('form.subject.errors.required') },
+              maxLength: 255
+            }}
+          />
 
-        {status === 'error' && (
-          <p className="text-sm text-red-500">{t('form.error')}</p>
-        )}
+          <TextInput
+            as="textarea"
+            rows={5}
+            name="message"
+            placeholder={t('form.message.placeholder')}
+            validation={{ required: { value: true, message: t('form.message.errors.required') } }}
+          />
 
-        <Button
-          type="submit"
-          label={status === 'sending' ? t('form.sending') : t('form.submit')}
-          disabled={status === 'sending'}
-        />
-      </form>
-    </FormProvider>
+          <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-language={locale} />
+
+          {status === 'error' && <p className="text-sm text-red-500">{t('form.error')}</p>}
+
+          <Button
+            type="submit"
+            label={status === 'sending' ? t('form.sending') : t('form.submit')}
+            disabled={status === 'sending'}
+          />
+        </form>
+      </FormProvider>
+    </>
   );
 }
