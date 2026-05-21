@@ -35,6 +35,18 @@
   "blog": {
     "all_posts": "All posts"
   },
+  "post": {
+    "previous_article": "Previous article",
+    "next_article": "Next article",
+    "discuss_twitter": "Discuss on Twitter",
+    "view_github": "View on GitHub",
+    "back_to_blog": "Back to the blog"
+  },
+  "not_found": {
+    "title": "Sorry, we couldn't find this page.",
+    "description": "But don't worry, there's plenty more on the homepage.",
+    "back_home": "Back to homepage"
+  },
   "about": "About",
   "contact": {
     "title": "Contact",

@@ -35,6 +35,18 @@
   "blog": {
     "all_posts": "Todas las publicaciones"
   },
+  "post": {
+    "previous_article": "Artículo anterior",
+    "next_article": "Artículo siguiente",
+    "discuss_twitter": "Comentar en Twitter",
+    "view_github": "Ver en GitHub",
+    "back_to_blog": "Volver al blog"
+  },
+  "not_found": {
+    "title": "Lo sentimos, no encontramos esta página.",
+    "description": "Pero no te preocupes, hay muchas otras cosas en la página principal.",
+    "back_home": "Volver al inicio"
+  },
   "about": "Sobre mí",
   "contact": {
     "title": "Contacto",

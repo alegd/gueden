@@ -1,6 +1,9 @@
 import { ButtonLink } from '@/components/button/ButtonLink';
+import { getTranslations } from 'next-intl/server';
 
-export default function NotFound() {
+export default async function NotFound() {
+  const t = await getTranslations('not_found');
+
   return (
     <div className="flex md:flex-row flex-col justify-start md:justify-center items-start md:items-center md:space-x-6 md:mt-24">
       <div className="space-x-2 md:space-y-5 pt-6 pb-8">
@@ -9,13 +12,9 @@ export default function NotFound() {
         </h1>
       </div>
       <div className="max-w-md">
-        <p className="mb-4 font-medium text-xl md:text-2xl leading-normal">
-          Sorry we couldn't find this page.
-        </p>
-        <p className="mb-8 text-foreground">
-          But dont worry, you can find plenty of other things on our homepage.
-        </p>
-        <ButtonLink href="/" label="Back to homepage" variant="outline" />
+        <p className="mb-4 font-medium text-xl md:text-2xl leading-normal">{t('title')}</p>
+        <p className="mb-8 text-foreground">{t('description')}</p>
+        <ButtonLink href="/" label={t('back_home')} variant="outline" />
       </div>
     </div>
   );

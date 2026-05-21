@@ -9,6 +9,7 @@ import siteMetadata from '@/data/siteMetadata';
 import type { Authors, Blog } from 'contentlayer/generated';
 import { CoreContent } from 'pliny/utils/contentlayer';
 import { ReactNode } from 'react';
+import { useTranslations } from 'next-intl';
 import { PostsNavigationButtons } from './PostsNavigationButtons';
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`;
@@ -31,14 +32,15 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags } = content;
+  const { filePath, path, date, title, tags } = content;
   const basePath = path.split('/')[0];
+  const t = useTranslations('post');
 
   return (
     <SectionContainer>
       <ScrollTopAndComment />
       <article>
-        <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
+        <div className="xl:divide-y xl:divide-border">
           <header className="mx-auto pt-6 xl:pb-6 max-w-2xl">
             <Animate>
               <div className="space-y-1 text-center">
@@ -66,8 +68,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </div>
             </Animate>
           </header>
-          <div className="xl:gap-x-6 pb-8 divide-y xl:divide-y-0 divide-gray-200 dark:divide-gray-700">
-            <div className="xl:pb-0 divide-y divide-gray-200 dark:divide-gray-700">
+          <div className="xl:gap-x-6 pb-8 divide-y xl:divide-y-0 divide-border">
+            <div className="xl:pb-0 divide-y divide-border">
               <Animate>
                 <div className="mx-auto pt-10 pb-8 max-w-2xl dark:prose-invert prose">
                   {children}
@@ -76,23 +78,15 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               <Animate>
                 <div className="pt-6 pb-6 text-foreground text-sm">
                   <Link href={discussUrl(path)} rel="nofollow">
-                    Discuss on Twitter
+                    {t('discuss_twitter')}
                   </Link>
                   {` • `}
-                  <Link href={editUrl(filePath)}>View on GitHub</Link>
+                  <Link href={editUrl(filePath)}>{t('view_github')}</Link>
                 </div>
               </Animate>
-              {/* {siteMetadata.comments && (
-                <div
-                  className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300"
-                  id="comment"
-                >
-                  <Comments slug={slug} />
-                </div>
-              )} */}
             </div>
             <Animate>
-              <dl className="xl:border-gray-200 xl:dark:border-gray-700 pt-6 xl:pt-11 pb-10 xl:border-b">
+              <dl className="xl:border-border pt-6 xl:pt-11 pb-10 xl:border-b">
                 <dt className="sr-only">Authors</dt>
                 <dd>
                   <ul className="xl:block flex flex-wrap justify-center gap-3 sm:space-x-12 xl:space-x-0 xl:space-y-8">
@@ -132,16 +126,16 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
             </Animate>
             <footer>
               <Animate>
-                <div className="divide-y divide-gray-200 dark:divide-gray-700 font-medium text-sm leading-5">
+                <div className="divide-y divide-border font-medium text-sm leading-5">
                   {(next || prev) && <PostsNavigationButtons next={next} prev={prev} />}
                 </div>
                 <div className="pt-4 xl:pt-8">
                   <Link
                     href={`/${basePath}`}
                     className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                    aria-label="Back to the blog"
+                    aria-label={t('back_to_blog')}
                   >
-                    Back to the blog
+                    {t('back_to_blog')}
                   </Link>
                 </div>
               </Animate>
