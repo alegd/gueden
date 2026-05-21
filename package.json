@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "next dev",
-    "dev": "cross-env INIT_CWD=$PWD next dev",
+    "start": "next start",
+    "dev": "cross-env INIT_CWD=$PWD contentlayer2 build && cross-env INIT_CWD=$PWD concurrently -k -n content,next -c blue,green \"contentlayer2 dev\" \"next dev\"",
     "build": "cross-env INIT_CWD=$PWD contentlayer2 build && next build && cross-env NODE_OPTIONS='--experimental-json-modules' node ./scripts/postbuild.mjs",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
@@ -63,6 +63,7 @@
     "@types/react": "^19.2.14",
     "@typescript-eslint/eslint-plugin": "^8.58.1",
     "@typescript-eslint/parser": "^8.58.1",
+    "concurrently": "^9.1.0",
     "cross-env": "^7.0.3",
     "eslint": "^9.39.4",
     "eslint-config-next": "16.2.3",
