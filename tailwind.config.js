@@ -73,7 +73,7 @@ module.exports = {
             },
             code: {
               color: '#111827',
-              backgroundColor: '#f3f4f6',
+              backgroundColor: 'var(--muted)',
               padding: '0.125rem 0.375rem',
               borderRadius: '0.25rem',
               fontWeight: '400',
@@ -97,7 +97,7 @@ module.exports = {
             },
             code: {
               color: '#f3f4f6',
-              backgroundColor: '#1f2937'
+              backgroundColor: 'var(--muted)'
             }
           }
         }

@@ -6,7 +6,7 @@ export function Loader({ children, size, fullScreen }: Readonly<LoaderProps>) {
   return (
     <div
       className={clsx(
-        fullScreen && 'fixed inset-0 h-screen bg-white',
+        fullScreen && 'fixed inset-0 h-screen bg-background',
         'z-50 flex items-center justify-center w-full h-full'
       )}
     >

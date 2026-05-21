@@ -47,15 +47,17 @@ The aesthetic is closer to a well-typeset book than a startup landing page. Whit
 
 #### Core palette
 
-| Token            | Light mode | Dark mode | Usage                               |
-| ---------------- | ---------- | --------- | ----------------------------------- |
-| `--bg-primary`   | `#FFFFFF`  | `#000000` | Page background                     |
-| `--bg-surface`   | `#FAFAFA`  | `#0A0A0A` | Cards, code blocks, raised surfaces |
-| `--text-primary` | `#000000`  | `#FFFFFF` | Headlines, names, CTAs              |
-| `--text-body`    | `#4A4A4A`  | `#A0A0A0` | Body text, descriptions             |
-| `--text-muted`   | `#9A9A9A`  | `#666666` | Dates, labels, metadata             |
-| `--border`       | `#E5E5E5`  | `#1A1A1A` | Section dividers, card borders      |
-| `--border-hover` | `#999999`  | `#444444` | Interactive element hover borders   |
+| Token            | Light mode | Dark mode | Usage                                            |
+| ---------------- | ---------- | --------- | ------------------------------------------------ |
+| `--bg-primary`   | `#FAF9F5`  | `#1C1C1C` | Page background (warm off-white / soft charcoal) |
+| `--bg-surface`   | `#FAFAFA`  | `#0A0A0A` | Cards, code blocks, raised surfaces              |
+| `--text-primary` | `#000000`  | `#FFFFFF` | Headlines, names, CTAs                           |
+| `--text-body`    | `#4A4A4A`  | `#A0A0A0` | Body text, descriptions                          |
+| `--text-muted`   | `#9A9A9A`  | `#666666` | Dates, labels, metadata                          |
+| `--border`       | `#E5E5E5`  | `#1A1A1A` | Section dividers, card borders                   |
+| `--border-hover` | `#999999`  | `#444444` | Interactive element hover borders                |
+
+> **Warm tint (light mode only).** The light-mode background is a warm off-white (`oklch(0.98 0.005 95)`, ~`#FAF9F5`), Claude/Notion-style — never stark white. Light-mode surfaces, borders and muted text carry the same subtle warmth (hue ~95, chroma ~0.005) so nothing reads as a cold gray island on the cream. Cards/popovers stay pure white so raised surfaces pop. **Dark mode stays neutral** (chroma 0): the charcoal background is neutral, so neutral grays harmonize — adding warmth there would only add noise.
 
 #### Accent colors (status dots only)
 
