@@ -22,7 +22,7 @@ export function NavigationLinks({ keepInDark: _keepInDark }: { keepInDark?: bool
             'block px-3 py-2 text-sm transition-colors',
             pathname === link.href
               ? 'text-black dark:text-white'
-              : 'text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white'
+              : 'text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white'
           )}
         >
           {t(link.titleKey)}
