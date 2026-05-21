@@ -29,7 +29,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
       <article>
         <div>
           <Animate>
-            <div className="space-y-1 dark:border-gray-700 pb-10 text-center">
+            <div className="space-y-1 pb-10 text-center">
               <div className="w-full">
                 <Bleed>
                   <div className="relative w-full aspect-[2/1]">

@@ -59,7 +59,7 @@ export function ContactForm() {
   if (status === 'sent') {
     return (
       <div className="flex flex-col items-start gap-6 py-12">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 dark:border-gray-800">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full border border-border">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"

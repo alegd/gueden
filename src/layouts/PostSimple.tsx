@@ -27,7 +27,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
         <div>
           <header>
             <Animate>
-              <div className="space-y-1 border-gray-200 dark:border-gray-700 pb-10 border-b text-center">
+              <div className="space-y-1 border-border pb-10 border-b text-center">
                 <dl>
                   <div>
                     <dt className="sr-only">Published on</dt>
@@ -42,8 +42,8 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
               </div>
             </Animate>
           </header>
-          <div className="grid-rows-[auto_1fr] pb-8 divide-y xl:divide-y-0 divide-gray-200 dark:divide-gray-700">
-            <div className="xl:col-span-3 xl:row-span-2 xl:pb-0 divide-y divide-gray-200 dark:divide-gray-700">
+          <div className="grid-rows-[auto_1fr] pb-8 divide-y xl:divide-y-0 divide-border">
+            <div className="xl:col-span-3 xl:row-span-2 xl:pb-0 divide-y divide-border">
               <Animate>
                 <div className="mx-auto pt-10 pb-8 max-w-2xl dark:prose-invert prose">
                   {children}
