@@ -17,7 +17,7 @@ export function HeroSection() {
       </h1>
 
       <Animate delay={400}>
-        <p className="mt-6 max-w-xl text-muted-foreground">{t('intro')}</p>
+        <p className="mt-6 max-w-xl text-foreground">{t('intro')}</p>
         <div className="mt-8 flex items-center gap-4">
           <ButtonLink href="/portfolio" label={t('cta_portfolio')} variant="outline" />
           <ButtonLink href="/contact" label={`${t('cta_contact')} \u2192`} variant="ghost" />

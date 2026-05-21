@@ -45,7 +45,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 <dl className="space-y-10">
                   <div>
                     <dt className="sr-only">Published on</dt>
-                    <dd className="font-medium text-gray-500 dark:text-gray-400 leading-6">
+                    <dd className="font-medium text-muted-foreground leading-6">
                       <time dateTime={date}>
                         {new Date(date).toLocaleDateString(siteMetadata.locale, postDateTemplate)}
                       </time>
@@ -74,7 +74,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 </div>
               </Animate>
               <Animate>
-                <div className="pt-6 pb-6 text-gray-700 text-sm dark:text-gray-300">
+                <div className="pt-6 pb-6 text-foreground text-sm">
                   <Link href={discussUrl(path)} rel="nofollow">
                     Discuss on Twitter
                   </Link>
@@ -109,7 +109,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                         )}
                         <dl className="font-medium text-sm leading-5 whitespace-nowrap">
                           <dt className="sr-only">Name</dt>
-                          <dd className="text-gray-900 dark:text-gray-100">{author.name}</dd>
+                          <dd className="text-foreground">{author.name}</dd>
                           <dt className="sr-only">Twitter</dt>
                           <dd>
                             {author.twitter && (

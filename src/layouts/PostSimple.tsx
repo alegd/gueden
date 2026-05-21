@@ -31,7 +31,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
                 <dl>
                   <div>
                     <dt className="sr-only">Published on</dt>
-                    <dd className="font-medium text-gray-500 dark:text-gray-400 leading-6">
+                    <dd className="font-medium text-muted-foreground leading-6">
                       <time dateTime={date}>{formatDate(date, siteMetadata.locale)}</time>
                     </dd>
                   </div>
@@ -52,10 +52,7 @@ export default function PostLayout({ content, next, prev, children }: LayoutProp
             </div>
             {siteMetadata.comments && (
               <Animate>
-                <div
-                  className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300"
-                  id="comment"
-                >
+                <div className="pt-6 pb-6 text-center text-foreground" id="comment">
                   <Comments slug={slug} />
                 </div>
               </Animate>

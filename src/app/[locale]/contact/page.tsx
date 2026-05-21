@@ -13,7 +13,7 @@ export default async function Page() {
     <SectionContainer>
       <Animate>
         <h1 className="text-3xl font-medium tracking-tight md:text-4xl">{t('title')}</h1>
-        <p className="mt-2 mb-4 text-muted-foreground">{t('subtitle')}</p>
+        <p className="mt-2 mb-4 text-foreground">{t('subtitle')}</p>
       </Animate>
 
       <Animate delay={100}>

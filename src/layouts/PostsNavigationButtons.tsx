@@ -22,9 +22,7 @@ export function PostsNavigationButtons({ prev, next }: PostsNavigationButtonsPro
           <span>&larr;</span>
 
           <div>
-            <h2 className="text-gray-500 text-sm dark:text-gray-400 tracking-wide">
-              Previous Article
-            </h2>
+            <h2 className="text-muted-foreground text-sm tracking-wide">Previous Article</h2>
 
             {prev.title}
           </div>
@@ -36,7 +34,7 @@ export function PostsNavigationButtons({ prev, next }: PostsNavigationButtonsPro
           href={`/${next.path}`}
         >
           <div>
-            <h2 className="text-gray-500 text-sm dark:text-gray-400 tracking-wide">Next Article</h2>
+            <h2 className="text-muted-foreground text-sm tracking-wide">Next Article</h2>
 
             {next.title}
           </div>

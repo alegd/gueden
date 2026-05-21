@@ -47,7 +47,7 @@ export default function PostMinimal({ content, next, prev, children }: LayoutPro
           </Animate>
           {siteMetadata.comments && (
             <Animate>
-              <div className="pt-6 pb-6 text-center text-gray-700 dark:text-gray-300" id="comment">
+              <div className="pt-6 pb-6 text-center text-foreground" id="comment">
                 <Comments slug={slug} />
               </div>
             </Animate>

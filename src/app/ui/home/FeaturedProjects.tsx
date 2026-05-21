@@ -43,7 +43,7 @@ export function FeaturedProjects() {
                 />
                 <span className="font-medium">{project.title}</span>
               </div>
-              <p className="mt-2 flex-1 text-sm text-muted-foreground">
+              <p className="mt-2 flex-1 text-sm text-foreground">
                 {tProjects(project.descriptionKey)}
               </p>
               {project.tech && (

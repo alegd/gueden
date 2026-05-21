@@ -75,7 +75,7 @@ export function ContactForm() {
         </div>
         <div>
           <p className="text-lg font-medium">{t('form.success_title')}</p>
-          <p className="mt-2 text-gray-500 dark:text-gray-400">{t('form.success')}</p>
+          <p className="mt-2 text-foreground">{t('form.success')}</p>
         </div>
         <ButtonLink href="/" label={t('form.back_home')} variant="outline" />
       </div>

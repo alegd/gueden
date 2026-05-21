@@ -18,7 +18,7 @@ export default function AuthorLayout({ children, content }: Props) {
     <div>
       <Animate>
         <section className="pt-12 pb-8">
-          <p className="text-sm uppercase tracking-widest text-gray-500">{t('about')}</p>
+          <p className="text-sm uppercase tracking-widest text-muted-foreground">{t('about')}</p>
           <div className="mt-6 flex items-center gap-4">
             {avatar && (
               <Image
@@ -31,7 +31,7 @@ export default function AuthorLayout({ children, content }: Props) {
             )}
             <div>
               <h1 className="text-xl font-medium tracking-tight">{name}</h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400">
+              <p className="text-sm text-muted-foreground">
                 {occupation}
                 {company && ` · ${company}`}
               </p>

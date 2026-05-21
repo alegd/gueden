@@ -55,9 +55,7 @@ export default async function PortfolioPage() {
                   </span>
                 )}
               </div>
-              <p className="mt-2 text-sm text-muted-foreground">
-                {tProjects(project.descriptionKey)}
-              </p>
+              <p className="mt-2 text-sm text-foreground">{tProjects(project.descriptionKey)}</p>
               {project.tech && (
                 <p className="mt-2 text-sm text-muted-foreground">{project.tech.join(' · ')}</p>
               )}
