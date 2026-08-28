@@ -23,6 +23,7 @@
     "cta_bottom_link": "Let's talk"
   },
   "projects": {
+    "instacaribe": "Mobile top-up, remittance and package platform for the Cuban diaspora. Mobile app, admin backoffice and a B2B engine integrated with the telecom providers.",
     "zendinit": "P2P crowdshipping marketplace connecting people who send packages with travelers already making that trip between Spanish cities.",
     "yappie": "Open source voice-to-ticket tool. Speak your ideas and get structured Jira issues automatically with Whisper and GPT-4o.",
     "uyelarte": "An art and culture podcast. Each episode covers a different topic to bring art closer to non-specialist audiences."

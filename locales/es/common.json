@@ -23,6 +23,7 @@
     "cta_bottom_link": "Hablemos"
   },
   "projects": {
+    "instacaribe": "Plataforma de recargas móviles, remesas y paquetes hacia Cuba para la diáspora. App móvil, backoffice de administración y un motor B2B integrado con los operadores de telecomunicaciones.",
     "zendinit": "Marketplace P2P de crowdshipping que conecta a personas que envían paquetes con viajeros que ya hacen ese trayecto entre ciudades españolas.",
     "yappie": "Herramienta open source de voz a ticket. Dicta tus ideas y obtén incidencias de Jira estructuradas automáticamente con Whisper y GPT-4o.",
     "uyelarte": "Un podcast de arte y cultura. En cada episodio, un tema diferente para acercar el arte a audiencias no especializadas."
