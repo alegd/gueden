@@ -48,3 +48,6 @@ yarn-error.log*
 
 # Planning docs (local only)
 .planning/
+
+# TypeScript incremental build info
+tsconfig.tsbuildinfo

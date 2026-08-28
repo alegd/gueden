@@ -1,0 +1,5 @@
+.contentlayer
+.next
+node_modules
+next-env.d.ts
+src/app/tag-data.json
