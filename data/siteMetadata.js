@@ -18,7 +18,7 @@ const siteMetadata = {
     { name: 'github', link: 'https://github.com/alegd' },
     {
       name: 'linkedin',
-      link: 'https://www.linkedin.com/in/alejandro-guerra-denis-33a138a4'
+      link: 'https://www.linkedin.com/in/alegd'
     },
     { name: 'x', link: 'https://x.com/alegueden' }
   ],
